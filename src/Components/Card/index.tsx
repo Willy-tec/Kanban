@@ -1,7 +1,9 @@
+import "./style.scss";
+
 interface CardProps {
   children: React.ReactNode;
 }
 
 export default function Card({children}: CardProps): JSX.Element {
-  return <div>{children}</div>;
+  return <div className="card">{children}</div>;
 }

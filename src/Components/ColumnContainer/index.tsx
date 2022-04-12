@@ -2,6 +2,7 @@ import React, {useRef} from "react";
 import {useAppDispatch} from "../../Redux/hooks";
 import {addCard} from "../../Redux/store";
 import Card from "../Card";
+import "./style.scss";
 
 type ColumnContainerProps = {
   children: React.ReactNode;
@@ -20,16 +21,15 @@ export default function ColumnContainer({
   const textAreaInput = useRef<HTMLTextAreaElement>(null);
 
   return (
-    <div>
+    <div className="column-container">
       <h2>{title}</h2>
       <textarea ref={textAreaInput}></textarea>
       <button
         onClick={() => {
           const value = textAreaInput.current
             ? textAreaInput.current.value
-            : "empty";
-          dispatch(addCard(position, value));
-          console.log("click", position);
+            : "woopsy";
+          if (value !== "") dispatch(addCard(position, value));
         }}>
         add card
       </button>

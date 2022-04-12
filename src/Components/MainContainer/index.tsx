@@ -13,33 +13,42 @@ function MainContainer(/*{children}: MainContainerProps*/): JSX.Element {
   const dispatch = useAppDispatch();
   const state = useAppSelector((state) => state.columnReducer);
   const inputName = useRef<HTMLInputElement>(null);
-  console.log(state);
   return (
-    <div className="main-container">
+    <div className="main">
       {state.columns.map((col, index) => (
         <ColumnContainer
           title={col.title}
           key={index}
           cards={col.cardArr}
           position={index}>
-          <button onClick={() => dispatch(deleteColumn(index))}>delMe</button>
+          <button onClick={() => dispatch(deleteColumn(index))}>
+            Remove the column
+          </button>
         </ColumnContainer>
       ))}
-      <input type="text" name="columnName" id="columnName" ref={inputName} />
-      <button
-        onClick={() => {
-          dispatch(
-            addColumn(
-              inputName.current !== null && inputName.current.value !== ""
-                ? inputName.current.value
-                : "To do"
-            )
-          );
-        }}>
-        Ok
-      </button>
+      <form onSubmit={(e) => e.preventDefault()} className="main-form">
+        <textarea
+          type="text"
+          ref={inputName}
+          className="main-form-inputname"
+          placeholder="Name of the next column"
+        />
+        <input
+          type="button"
+          value="ok"
+          onClick={() => {
+            dispatch(
+              addColumn(
+                inputName.current !== null && inputName.current.value !== ""
+                  ? inputName.current.value
+                  : "To do"
+              )
+            );
+          }}
+        />
+      </form>
     </div>
   );
 }
 
-export default connect()(MainContainer);
+export default MainContainer;

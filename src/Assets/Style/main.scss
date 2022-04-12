@@ -5,9 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  & .App {
-    background-color: antiquewhite;
-  }
+  color: #adbac7;
+  background-color: #22272e;
+  padding: 16px;
 }
 
 code {
@@ -15,3 +15,14 @@ code {
     monospace;
 }
 
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  margin-bottom: 16px;
+}

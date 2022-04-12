@@ -1,13 +1,18 @@
-import {
-  createAction,
-  configureStore,
-  Action,
-  ActionCreatorWithPayload,
-} from "@reduxjs/toolkit";
+import {configureStore} from "@reduxjs/toolkit";
+
 const ADDCOLUMN: string = "ADDCOLUMN";
 const DELETECOLUMN: string = "DELETECOLUMN";
+const ADDCARD: string = "ADDCARD";
+const DELETECARD: string = "DELETECARD";
 
-const defaultState = {
+interface columnState {
+  columns: {
+    title: string;
+    cardArr: [];
+  }[];
+}
+
+const defaultState: columnState = {
   columns: [],
 };
 
@@ -25,10 +30,28 @@ export const deleteColumn = (index: number) => {
   };
 };
 
-const columnReducer = (state = defaultState, action: any) => {
+export const deleteCard = (index: number) => {
+  return {
+    type: DELETECARD,
+    payload: index,
+  };
+};
+export const addCard = (index: number, name: string) => {
+  return {
+    type: ADDCARD,
+    payload: {
+      index: index,
+      name: name,
+    },
+  };
+};
+const columnReducer = (state = defaultState, action: any): columnState => {
   switch (action.type) {
     case ADDCOLUMN:
-      return {...state, columns: [...state.columns, action.payload]};
+      return {
+        ...state,
+        columns: [...state.columns, {title: action.payload, cardArr: []}],
+      };
     case DELETECOLUMN:
       return {
         ...state,
@@ -37,6 +60,14 @@ const columnReducer = (state = defaultState, action: any) => {
           ...state.columns.slice(action.payload + 1),
         ],
       };
+    case ADDCARD:
+      const tmpState = JSON.parse(JSON.stringify(state));
+      tmpState.columns[action.payload.index].cardArr.unshift(
+        action.payload.name
+      );
+      return {...tmpState};
+    case DELETECARD:
+      return {...state};
     default:
       return {...state};
   }

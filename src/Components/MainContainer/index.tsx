@@ -12,7 +12,7 @@ import {useRef} from "react";
 function MainContainer(/*{children}: MainContainerProps*/): JSX.Element {
   const dispatch = useAppDispatch();
   const state = useAppSelector((state) => state.columnReducer);
-  const inputName = useRef<HTMLInputElement>(null);
+  const inputName = useRef<HTMLTextAreaElement>(null);
   return (
     <div className="main">
       {state.columns.map((col, index) => (

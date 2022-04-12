@@ -28,7 +28,6 @@ function MainContainer(/*{children}: MainContainerProps*/): JSX.Element {
       ))}
       <form onSubmit={(e) => e.preventDefault()} className="main-form">
         <textarea
-          type="text"
           ref={inputName}
           className="main-form-inputname"
           placeholder="Name of the next column"

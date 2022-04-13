@@ -8,7 +8,6 @@ export function Home() {
   const dispatch = useAppDispatch();
   const [edit, setEditable] = useState(false);
   const inputTitle = useRef<HTMLInputElement>(null);
-
   return (
     <>
       <div

@@ -13,7 +13,13 @@
     flex-shrink: 0;
     height: 100%;
     border-radius: 6px;
+    gap: 8px;
     &-inputname {
+      border-radius: 6px;
+      background-color: #2d333b;
+      color: #adbac7;
+      border: none;
+      padding: 8px;
     }
   }
 }

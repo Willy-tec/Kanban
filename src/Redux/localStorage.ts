@@ -3,7 +3,7 @@ import {RootState} from "./store";
 const storage = localStorage;
 
 export const readFromStorage = () => {
-  const data = storage.getItem("storedState") || "";
+  const data = storage.getItem("storedState") || "{}";
   return JSON.parse(data);
 };
 

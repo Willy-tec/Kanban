@@ -1,0 +1,27 @@
+.contextMenu {
+  position: absolute;
+  background-color: #2d333b;
+  border: 1px solid #444c56;
+  padding: 8px;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  align-self: flex-end;
+  &-list {
+    margin: 0;
+    padding-left: 0;
+    text-align: left;
+  }
+  &-item {
+    list-style: none;
+    cursor: pointer;
+    &.close {
+      text-align: right;
+      color: #768389;
+    }
+  }
+  &-3dot {
+    position: absolute;
+    right: 10px;
+  }
+}

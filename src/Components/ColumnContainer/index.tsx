@@ -26,15 +26,20 @@ export default function ColumnContainer({
       <textarea ref={textAreaInput}></textarea>
       <button
         onClick={() => {
-          const value = textAreaInput.current
-            ? textAreaInput.current.value
-            : "woopsy";
-          if (value !== "") dispatch(addCard(position, value));
+          if (textAreaInput.current) {
+            const value = textAreaInput.current.value;
+            if (value !== "") {
+              dispatch(addCard(position, value));
+              textAreaInput.current.value = "";
+            }
+          }
         }}>
         add card
       </button>
       {cards.map((card, index) => (
-        <Card key={index}>{card}</Card>
+        <Card key={index} columnId={position} cardId={index}>
+          {card}
+        </Card>
       ))}
       {children}
     </div>

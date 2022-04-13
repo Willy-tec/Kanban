@@ -1,7 +1,10 @@
 .column-container {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
   padding: 8px;
   background-color: #1c2128;
   border-radius: 6px;
+  width: clamp(160px, 20vw, 380px);
 }

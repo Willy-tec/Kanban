@@ -30,10 +30,13 @@ export const deleteColumn = (index: number) => {
   };
 };
 
-export const deleteCard = (index: number) => {
+export const deleteCard = (col: number, card: number) => {
   return {
     type: DELETECARD,
-    payload: index,
+    payload: {
+      indexCol: col,
+      indexCard: card,
+    },
   };
 };
 export const addCard = (index: number, name: string) => {
@@ -60,14 +63,23 @@ const columnReducer = (state = defaultState, action: any): columnState => {
           ...state.columns.slice(action.payload + 1),
         ],
       };
-    case ADDCARD:
-      const tmpState = JSON.parse(JSON.stringify(state));
+    case ADDCARD: {
+      const tmpState = JSON.parse(JSON.stringify(state)); // copie profonde du state
       tmpState.columns[action.payload.index].cardArr.unshift(
         action.payload.name
       );
       return {...tmpState};
-    case DELETECARD:
-      return {...state};
+    }
+    case DELETECARD: {
+      const tmpState = JSON.parse(JSON.stringify(state)); // copie profonde du state
+      const cardArr = tmpState.columns[action.payload.indexCol].cardArr;
+      const tmpArr = [
+        ...cardArr.slice(0, action.payload.indexCard),
+        ...cardArr.slice(action.payload.indexCard + 1),
+      ];
+      tmpState.columns[action.payload.indexCol].cardArr = tmpArr;
+      return {...tmpState};
+    }
     default:
       return {...state};
   }

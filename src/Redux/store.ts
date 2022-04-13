@@ -24,7 +24,6 @@ const defaultState: columnState = {
 };
 
 const storedData = readFromStorage();
-//if (storedData) defaultState = storedData.columnReducer;
 
 const columnReducer = (
   state = storedData.columnReducer || defaultState,

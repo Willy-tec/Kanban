@@ -29,8 +29,6 @@ export default function ContextMenu({
                 onClick={() => handleVisible(false)}>
                 X
               </li>
-              <li className="contextMenu-item">Edit</li>
-              <li className="contextMenu-item">Archive</li>
               <li
                 className="contextMenu-item"
                 onClick={() => {

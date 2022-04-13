@@ -5,6 +5,16 @@
   align-items: stretch;
   padding: 8px;
   background-color: #1c2128;
+  box-shadow: 0 0 6px rgba($color: #000000, $alpha: 0.5);
   border-radius: 6px;
   width: clamp(160px, 20vw, 380px);
+  gap: 8px;
+}
+
+.column-inputarea {
+  background-color: #2d333b;
+  color: #adbac7;
+  border: none;
+  border-radius: 6px;
+  max-width: calc(100% - 8px);
 }

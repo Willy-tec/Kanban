@@ -1,6 +1,6 @@
 import React, {useRef} from "react";
 import {useAppDispatch} from "../../Redux/hooks";
-import {addCard} from "../../Redux/store";
+import {addCard} from "../../Redux/action";
 import Card from "../Card";
 import "./style.scss";
 
@@ -23,7 +23,7 @@ export default function ColumnContainer({
   return (
     <div className="column-container">
       <h2>{title}</h2>
-      <textarea ref={textAreaInput}></textarea>
+      <textarea ref={textAreaInput} className="column-inputarea"></textarea>
       <button
         onClick={() => {
           if (textAreaInput.current) {

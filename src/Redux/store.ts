@@ -1,54 +1,35 @@
 import {configureStore} from "@reduxjs/toolkit";
-
-const ADDCOLUMN: string = "ADDCOLUMN";
-const DELETECOLUMN: string = "DELETECOLUMN";
-const ADDCARD: string = "ADDCARD";
-const DELETECARD: string = "DELETECARD";
+import {
+  ADDCOLUMN,
+  DELETECOLUMN,
+  ADDCARD,
+  DELETECARD,
+  SETPROJECTNAME,
+} from "./action";
+import {readFromStorage, writeToStorage} from "./localStorage";
 
 interface columnState {
+  projectName: string;
   columns: {
     title: string;
     cardArr: [];
   }[];
+  lastUpdate: string;
 }
 
 const defaultState: columnState = {
+  projectName: "Nom du projet",
   columns: [],
+  lastUpdate: "unknow",
 };
 
-export const addColumn = (name: string) => {
-  return {
-    type: ADDCOLUMN,
-    payload: name,
-  };
-};
+const storedData = readFromStorage();
+//if (storedData) defaultState = storedData.columnReducer;
 
-export const deleteColumn = (index: number) => {
-  return {
-    type: DELETECOLUMN,
-    payload: index,
-  };
-};
-
-export const deleteCard = (col: number, card: number) => {
-  return {
-    type: DELETECARD,
-    payload: {
-      indexCol: col,
-      indexCard: card,
-    },
-  };
-};
-export const addCard = (index: number, name: string) => {
-  return {
-    type: ADDCARD,
-    payload: {
-      index: index,
-      name: name,
-    },
-  };
-};
-const columnReducer = (state = defaultState, action: any): columnState => {
+const columnReducer = (
+  state = storedData.columnReducer || defaultState,
+  action: any
+): columnState => {
   switch (action.type) {
     case ADDCOLUMN:
       return {
@@ -80,13 +61,24 @@ const columnReducer = (state = defaultState, action: any): columnState => {
       tmpState.columns[action.payload.indexCol].cardArr = tmpArr;
       return {...tmpState};
     }
+    case SETPROJECTNAME: {
+      return {...state, projectName: action.payload};
+    }
     default:
       return {...state};
   }
 };
 
+export const saveToLocalStorage =
+  (store: any) => (next: any) => (action: any) => {
+    let result = next(action);
+    writeToStorage(store.getState());
+    return result;
+  };
+
 const store = configureStore({
   reducer: {columnReducer},
+  middleware: [saveToLocalStorage],
 });
 
 export default store;

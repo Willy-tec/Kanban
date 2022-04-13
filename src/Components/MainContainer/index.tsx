@@ -1,5 +1,5 @@
 import {useAppDispatch, useAppSelector} from "../../Redux/hooks";
-import {addColumn, deleteColumn} from "../../Redux/store";
+import {addColumn, deleteColumn} from "../../Redux/action";
 import ColumnContainer from "../ColumnContainer";
 import "./style.scss";
 import {useRef} from "react";

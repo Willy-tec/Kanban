@@ -23,7 +23,7 @@ export default function Card({
         columnId={columnId}
         cardId={cardId}
       />
-      {children}
+      <pre>{children}</pre>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import {useAppDispatch, useAppSelector} from "../../Redux/hooks";
-import store, {addColumn, deleteColumn} from "../../Redux/store";
-import {connect} from "react-redux";
+import {addColumn, deleteColumn} from "../../Redux/store";
 import ColumnContainer from "../ColumnContainer";
 import "./style.scss";
 import {useRef} from "react";
@@ -36,13 +35,16 @@ function MainContainer(/*{children}: MainContainerProps*/): JSX.Element {
           type="button"
           value="ok"
           onClick={() => {
-            dispatch(
-              addColumn(
-                inputName.current !== null && inputName.current.value !== ""
-                  ? inputName.current.value
-                  : "To do"
-              )
-            );
+            if (inputName.current) {
+              dispatch(
+                addColumn(
+                  inputName.current.value !== ""
+                    ? inputName.current.value
+                    : "To do"
+                )
+              );
+              inputName.current.value = "";
+            }
           }}
         />
       </form>

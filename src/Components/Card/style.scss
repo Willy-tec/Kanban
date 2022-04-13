@@ -1,7 +1,10 @@
 .card {
+  position: relative;
   background-color: #2d333b;
   padding: 8px;
   margin: 8px 0;
   border-radius: 6px;
   min-height: 32px;
+  display: flex;
+  flex-direction: column;
 }

@@ -12,7 +12,7 @@ interface columnState {
   projectName: string;
   columns: {
     title: string;
-    cardArr: [];
+    cardArr: string[];
   }[];
   lastUpdate: string;
 }

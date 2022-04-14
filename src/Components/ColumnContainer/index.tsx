@@ -7,7 +7,7 @@ import "./style.scss";
 type ColumnContainerProps = {
   children: React.ReactNode;
   title: string;
-  cards: [];
+  cards: string[];
   position: number;
 };
 

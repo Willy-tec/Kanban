@@ -2,6 +2,7 @@ import {useRef, useState} from "react";
 import MainContainer from "../../Components/MainContainer";
 import {useAppDispatch, useAppSelector} from "../../Redux/hooks";
 import {setProjectName} from "../../Redux/action";
+import "./style.scss";
 
 export function Home() {
   const state = useAppSelector((state) => state.columnReducer);
@@ -22,6 +23,7 @@ export function Home() {
               setEditable(false);
             }}>
             <input
+              className="header-inputName"
               type={"text"}
               value={state.projectName}
               ref={inputTitle}
